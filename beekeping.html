@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Indian Bee Product</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #fffaf0;
+    color: #333;
+}
+
+header {
+    background: #ffb300;
+    padding: 18px;
+    text-align: center;
+}
+
+header h1 {
+    color: #3d2600;
+}
+
+header p {
+    margin-top: 5px;
+}
+
+.search {
+    padding: 15px;
+}
+
+.search input {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #ddd;
+    font-size: 16px;
+}
+
+.banner {
+    margin: 5px 15px 20px;
+    padding: 25px;
+    border-radius: 18px;
+    background: linear-gradient(135deg,#ffc107,#ff9800);
+}
+
+.banner h2 {
+    margin-bottom: 8px;
+}
+
+.container {
+    padding: 15px;
+}
+
+.section-title {
+    margin: 20px 0 12px;
+}
+
+.categories {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+}
+
+.category {
+    min-width: 105px;
+    background: white;
+    padding: 15px 8px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 2px 8px #ddd;
+}
+
+.emoji {
+    font-size: 35px;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 15px;
+}
+
+.product {
+    background: white;
+    border-radius: 18px;
+    padding: 12px;
+    box-shadow: 0 2px 8px #ddd;
+}
+
+.product-image {
+    height: 130px;
+    background: #fff3cd;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+}
+
+.product h3 {
+    margin-top: 10px;
+}
+
+.hindi {
+    color: #777;
+    font-size: 13px;
+}
+
+.price {
+    color: #e65100;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 7px;
+}
+
+button {
+    width: 100%;
+    padding: 11px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 10px;
+    background: #ffb300;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.buy {
+    background: #25d366;
+    color: white;
+}
+
+.cart-button {
+    position: fixed;
+    right: 18px;
+    bottom: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #3d2600;
+    color: white;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px #999;
+    cursor: pointer;
+}
+
+#cartCount {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: red;
+    border-radius: 50%;
+    padding: 5px 7px;
+    font-size: 12px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.6);
+    z-index: 10;
+    overflow-y: auto;
+}
+
+.modal-box {
+    background: white;
+    width: 92%;
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.close {
+    float: right;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.total {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.form input,
+.form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.form textarea {
+    height: 90px;
+}
+
+footer {
+    margin-top: 35px;
+    padding: 20px;
+    background: #3d2600;
+    color: white;
+    text-align: center;
+}
+
+@media(min-width:700px) {
+    .products {
+        grid-template-columns: repeat(4,1fr);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🐝 Indian Bee Product</h1>
+    <p>शुद्धता का भरोसा • Pure & Natural</p>
+</header>
+
+<div class="search">
+    <input
+        id="searchBox"
+        placeholder="Search / खोजें..."
+        onkeyup="searchProducts()">
+</div>
+
+<div class="banner">
+    <h2>🍯 Natural Honey</h2>
+    <p>प्राकृतिक और शुद्ध शहद</p>
+    <button onclick="openCart()">🛒 Shop Now / अभी खरीदें</button>
+</div>
+
+<div class="container">
+
+<h2 class="section-title">Categories / श्रेणियाँ</h2>
+
+<div class="categories">
+
+<div class="category">
+<div class="emoji">🍯</div>
+<b>Honey</b>
+<p>शहद</p>
+</div>
+
+<div class="category">
+<div class="emoji">🐝</div>
+<b>Bee Wax</b>
+<p>मधुमोम</p>
+</div>
+
+<div class="category">
+<div class="emoji">🌿</div>
+<b>Propolis</b>
+<p>प्रोपोलिस</p>
+</div>
+
+<div class="category">
+<div class="emoji">👑</div>
+<b>Royal Jelly</b>
+<p>रॉयल जेली</p>
+</div>
+
+</div>
+
+<h2 class="section-title">Products / उत्पाद</h2>
+
+<div class="products">
+
+<div class="product">
+<div class="product-image">🍯</div>
+<h3>Pure Honey</h3>
+<p class="hindi">शुद्ध शहद</p>
+<p class="price">₹299</p>
+<button onclick="addCart('Pure Honey',299)">
+Add to Cart
+</button>
+<button class="buy" onclick="buyNow('Pure Honey',299)">
+Buy Now
+</button>
+</div>
+
+<div class="product">
+<div class="product-image">🍯</div>
+<h3>Raw Honey</h3>
+<p class="hindi">कच्चा शहद</p>
+<p class="price">₹399</p>
+<button onclick="addCart('Raw Honey',399)">
+Add to Cart
+</button>
+<button class="buy" onclick="buyNow('Raw Honey',399)">
+Buy Now
+</button>
+</div>
+
+<div class="product">
+<div class="product-image">🐝</div>
+<h3>Bee Wax</h3>
+<p class="hindi">मधुमोम</p>
+<p class="price">₹199</p>
+<button onclick="addCart('Bee Wax',199)">
+Add to Cart
+</button>
+<button class="buy" onclick="buyNow('Bee Wax',199)">
+Buy Now
+</button>
+</div>
+
+<div class="product">
+<div class="product-image">🌿</div>
+<h3>Propolis</h3>
+<p class="hindi">प्रोपोलिस</p>
+<p class="price">₹499</p>
+<button onclick="addCart('Propolis',499)">
+Add to Cart
+</button>
+<button class="buy" onclick="buyNow('Propolis',499)">
+Buy Now
+</button>
+</div>
+
+</div>
+</div>
+
+<!-- CART -->
+
+<div class="modal" id="cartModal">
+
+<div class="modal-box">
+
+<span class="close" onclick="closeCart()">×</span>
+
+<h2>🛒 Cart / कार्ट</h2>
+
+<div id="cartItems"></div>
+
+<p class="total">
+Total: ₹<span id="total">0</span>
+</p>
+
+<button onclick="showCheckout()">
+Checkout / ऑर्डर करें
+</button>
+
+</div>
+</div>
+
+<!-- CHECKOUT -->
+
+<div class="modal" id="checkoutModal">
+
+<div class="modal-box">
+
+<span class="close" onclick="closeCheckout()">×</span>
+
+<h2>📦 Order Details</h2>
+
+<p>ऑर्डर की जानकारी भरें</p>
+
+<div class="form">
+
+<input id="customerName"
+placeholder="Name / नाम">
+
+<input id="mobile"
+placeholder="Mobile Number / मोबाइल नंबर"
+type="tel">
+
+<textarea
+id="address"
+placeholder="Address / पूरा पता">
+</textarea>
+
+<button onclick="sendOrder()">
+💬 Order on WhatsApp
+</button>
+
+</div>
+
+</div>
+</div>
+
+<div class="cart-button" onclick="openCart()">
+🛒
+<span id="cartCount">0</span>
+</div>
+
+<footer>
+<p>🐝 Indian Bee Product</p>
+<p>Pure & Natural Products</p>
+<p>© 2026</p>
+</footer>
+
+<script>
+
+let cart = [];
+
+/* ADD TO CART */
+
+function addCart(name, price) {
+
+    cart.push({
+        name: name,
+        price: price
+    });
+
+    updateCart();
+
+    alert(
+        "Product added to cart!\nउत्पाद कार्ट में जोड़ दिया गया।"
+    );
+}
+
+/* BUY NOW */
+
+function buyNow(name, price) {
+
+    cart = [{
+        name: name,
+        price: price
+    }];
+
+    updateCart();
+    showCheckout();
+}
+
+/* UPDATE CART */
+
+function updateCart() {
+
+    document.getElementById("cartCount").innerText =
+        cart.length;
+
+    let items =
+        document.getElementById("cartItems");
+
+    items.innerHTML = "";
+
+    let total = 0;
+
+    cart.forEach(function(item,index) {
+
+        total += item.price;
+
+        items.innerHTML += `
+        <div class="cart-item">
+            <span>${item.name}</span>
+            <b>₹${item.price}</b>
+            <button
+              style="width:auto;margin:0;padding:5px 9px;background:#ff5252;color:white"
+              onclick="removeItem(${index})">
+              ×
+            </button>
+        </div>
+        `;
+    });
+
+    document.getElementById("total").innerText = total;
+}
+
+/* REMOVE */
+
+function removeItem(index) {
+
+    cart.splice(index,1);
+
+    updateCart();
+}
+
+/* OPEN CART */
+
+function openCart() {
+
+    updateCart();
+
+    document.getElementById("cartModal")
+        .style.display = "block";
+}
+
+/* CLOSE CART */
+
+function closeCart() {
+
+    document.getElementById("cartModal")
+        .style.display = "none";
+}
+
+/* CHECKOUT */
+
+function showCheckout() {
+
+    if(cart.length === 0) {
+
+        alert("Cart is empty!\nकार्ट खाली है।");
+        return;
+    }
+
+    closeCart();
+
+    document.getElementById("checkoutModal")
+        .style.display = "block";
+}
+
+function closeCheckout() {
+
+    document.getElementById("checkoutModal")
+        .style.display = "none";
+}
+
+/* WHATSAPP ORDER */
+
+function sendOrder() {
+
+    let name =
+        document.getElementById("customerName").value;
+
+    let mobile =
+        document.getElementById("mobile").value;
+
+    let address =
+        document.getElementById("address").value;
+
+    if(!name || !mobile || !address) {
+
+        alert(
+            "Please fill all details.\nकृपया सभी जानकारी भरें।"
+        );
+
+        return;
+    }
+
+    let message =
+        "🐝 INDIAN BEE PRODUCT%0A%0A" +
+        "New Order / नया ऑर्डर%0A%0A";
+
+    cart.forEach(function(item) {
+
+        message +=
+            item.name +
+            " - ₹" +
+            item.price +
+            "%0A";
+    });
+
+    let total = cart.reduce(
+        (sum,item) => sum + item.price,
+        0
+    );
+
+    message +=
+        "%0ATotal: ₹" + total +
+        "%0A%0AName: " + name +
+        "%0AMobile: " + mobile +
+        "%0AAddress: " + address;
+
+    /*
+      IMPORTANT:
+      नीचे 919999999999 की जगह
+      अपना WhatsApp number डालना है।
+
+      Example:
+      India number 9876543210
+      तो लिखें:
+      919876543210
+    */
+
+    let whatsappNumber =
+        "919999999999";
+
+    let url =
+        "https://wa.me/" +
+        whatsappNumber +
+        "?text=" +
+        message;
+
+    window.open(url,"_blank");
+}
+
+/* SEARCH */
+
+function searchProducts() {
+
+    let search =
+        document.getElementById("searchBox")
+        .value.toLowerCase();
+
+    let products =
+        document.querySelectorAll(".product");
+
+    products.forEach(function(product) {
+
+        if(product.innerText
+            .toLowerCase()
+            .includes(search)) {
+
+            product.style.display = "block";
+
+        } else {
+
+            product.style.display = "none";
+        }
+    });
+}
+
+</script>
+
+</body>
+</html>
